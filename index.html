@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+</script>
+</head>
+<body>
+    <input type="file" name="file" id="file"></br>
+    <input type="button" name="btn" value="读取图像" id="btn">
+<div id="picBox"><div src="" width="300" height="530" id="one"/></div>
+</body>
+<script type="text/javascript">
+    $.ajax({
+                        type: "get",
+                        url: "new.py",
+                        dataType: "text",
+                        async: true
+                    }).done(function (data) {
+                        $("#one").html(data.replace(/\r\n/ig, '</br>'));//替换回车行成换行符
+                    });
+</script>
+</html>
+
+
+         
