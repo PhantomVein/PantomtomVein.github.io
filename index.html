@@ -4,22 +4,24 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </script>
 </head>
 <body>
     <input type="file" name="file" id="file"></br>
     <input type="button" name="btn" value="读取图像" id="btn">
-<div id="picBox"><div src="" width="300" height="530" id="one"/></div>
+<div id="picBox"><div src="" width="300" height="530" id="content"/></div>
 </body>
 <script type="text/javascript">
-    $.ajax({
-                        type: "get",
-                        url: "new.py",
-                        dataType: "text",
-                        async: true
-                    }).done(function (data) {
-                        $("#one").html(data.replace(/\r\n/ig, '</br>'));//替换回车行成换行符
-                    });
+      $.ajax({
+       url: "/markdown.md",//文件位置
+       type: "GET",//请求方式为get
+       dataType: "text", 
+       success: function(data) {//请求成功完成后要执行的方法
+           $("#content").html(marked(data));
+       }
+    })
+					//data.replace(/\r\n/ig, '</br>'
 </script>
 </html>
 
